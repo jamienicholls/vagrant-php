@@ -15,16 +15,16 @@ Vagrant.configure("2") do |config|
   # Provision
   config.vm.provision "shell", inline: <<-SHELL
     # Install httpd
-    dnf install httpd
+    dnf install httpd -y
     systemctl enable --now httpd
     firewall-cmd --permanent --add-service=http
     
     # Install MariaDB
-    dnf install mariadb-server mariadb
+    dnf install mariadb-server mariadb -y
     systemctl enable --now mariadb
     
     # Install php
-    dnf install php php-fpm php-mysqlnd php-opcache php-gd php-xml php-mbstring
+    dnf install php php-fpm php-mysqlnd php-opcache php-gd php-xml php-mbstring -y
     systemctl enable --now php-fpm
     
   SHELL
