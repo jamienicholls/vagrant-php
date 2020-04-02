@@ -11,10 +11,18 @@ Vagrant.configure("2") do |config|
   # Forward the port 80 to host
   config.vm.network "forwarded_port", guest: 80, host: 80
   
+  # Custom VBox addons
+  config.vm.provider "virtualbox" do |vb|
+     vb.customize ["storageattach", :id,
+                 "--storagectl", "IDE Controller",
+                 "--port", "0", "--device", "1",
+                 "--type", "dvddrive",
+                 "--medium", "emptydrive"]
+  end
+  
   # Map host folder to vm
   config.vm.synced_folder "./www/", "/var/www/html"
   
   # Provision
   config.vm.provision :shell, path: "provision.sh"
-
 end
