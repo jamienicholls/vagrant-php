@@ -5,7 +5,7 @@ Vagrant.configure("2") do |config|
   
   # Hostname
   config.vm.hostname = 'boom.local'
-  config.vm.network "private_network", ip: "10.0.1.1"
+  config.vm.network "private_network", ip: "10.0.1.2"
   
   # Forward the port 80 to host
   config.vm.network "forwarded_port", guest: 80, host: 80
