@@ -14,7 +14,7 @@ Vagrant.configure("2") do |config|
   # Custom VBox addons
   config.vm.provider "virtualbox" do |vb|
      vb.customize ["storageattach", :id,
-                 "--storagectl", "IDE Controller",
+                 "--storagectl", "IDE",
                  "--port", "0", "--device", "1",
                  "--type", "dvddrive",
                  "--medium", "emptydrive"]
