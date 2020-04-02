@@ -11,22 +11,9 @@ Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", guest: 80, host: 80
   
   # Map host folder to vm
-  config.vm.synced_folder "./www/", "/var/www/"
+  config.vm.synced_folder "./www/", "/var/www/html"
   
   # Provision
-  config.vm.provision "shell", inline: <<-SHELL
-    # Install httpd
-    dnf install httpd -y
-    systemctl enable --now httpd
-    firewall-cmd --permanent --add-service=http
-    
-    # Install MariaDB
-    dnf install mariadb-server mariadb -y
-    systemctl enable --now mariadb
-    
-    # Install php
-    dnf install php php-fpm php-mysqlnd php-opcache php-gd php-xml php-mbstring -y
-    systemctl enable --now php-fpm
-    
-  SHELL
+  config.vm.provision :shell, path: "provision.sh"
+
 end
