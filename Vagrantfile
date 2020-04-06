@@ -21,7 +21,7 @@ Vagrant.configure("2") do |config|
   end
   
   # Map host folder to vm
-  config.vm.synced_folder "www", "/var/www/html"
+  config.vm.synced_folder "html", "/var/www/html", owner: "apache", group: "apache", mount_options: ["dmode=755,fmode=755"]
   
   # Provision
   config.vm.provision :shell, path: "provision.sh"
